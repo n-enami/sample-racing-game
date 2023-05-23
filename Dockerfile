@@ -1,8 +1,4 @@
-FROM nginx:1.19-alpine
-
-COPY etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
+FROM nginxinc/nginx-unprivileged:1.19-alpine
 
 WORKDIR /usr/share/nginx/html
 COPY . /usr/share/nginx/html
-
-EXPOSE 8080

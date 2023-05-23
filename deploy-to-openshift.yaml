@@ -14,7 +14,7 @@ spec:
   type: ClusterIP
   ports:
     - port: 80
-      targetPort: 80
+      targetPort: 8080
   selector:
     app: sample-racing-game
 ---
@@ -45,14 +45,7 @@ spec:
               memory: "512Mi"
               cpu: "500m"
           ports:
-            - containerPort: 80
-          readinessProbe:
-              httpGet:
-                scheme: HTTP
-                path: /index.html
-                port: 80
-              initialDelaySeconds: 10
-              periodSeconds: 5
+            - containerPort: 8080
 ---
 apiVersion: route.openshift.io/v1
 kind: Route
@@ -60,7 +53,7 @@ metadata:
   name: sample-racing-game
 spec: 
   port:
-    targetPort: 80
+    targetPort: 8080
   to:
     kind: Service
     name: sample-racing-game
